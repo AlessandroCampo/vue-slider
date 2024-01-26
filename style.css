@@ -10,10 +10,6 @@ i {
 }
 
 
-.thumbnail:hover {
-    opacity: 1 !important
-}
-
 .fade-leave-active,
 .mad-leave-active {
     transition: opacity 3s ease;
