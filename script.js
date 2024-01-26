@@ -8,14 +8,15 @@ createApp({
             currentPosition,
             autoSlide: null,
             pausePlay: "play",
-            activeClass: "opacity-100 border-2 border-white",
-            inactiveClass: "opacity-35",
             animes: allAnimes,
-            currentAnimes: [allAnimes[currentPosition - 1], allAnimes[currentPosition], allAnimes[currentPosition + 1]]
+            currentAnimes: [allAnimes[currentPosition - 1], allAnimes[currentPosition], allAnimes[currentPosition + 1]],
+            upDown: "up"
         }
     },
     mounted() {
-        this.autoSlide = setInterval(this.up, 3000)
+        this.autoSlide = setInterval(() => {
+            this.upDown == "up" ? this.up() : this.down()
+        }, 3000)
     },
     methods: {
         up() {
@@ -54,6 +55,17 @@ createApp({
                 this.autoSlide = setInterval(this.up, 3000)
             }
 
-        }
+        },
+        reverse() {
+            this.upDown == "up" ? this.upDown = "down" : this.upDown = "up"
+            console.log(this.upDown)
+        },
+        stopOver() {
+            clearInterval(this.autoSlide)
+            this.autoSlide = null
+        },
+        // startLeave() {
+        //     this.autoSlide = setInterval(this.up, 3000)
+        // }
     }
 }).mount('#app')
