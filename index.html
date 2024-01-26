@@ -16,10 +16,17 @@
     <div id="app">
         <div id="slider-conatiner" style="height: 100vh;" class="flex justify-center items-center">
             <figure class="relative flex justify-center items-center " style="height: 520px;">
-                <img v-for="(anime, index) in animes" v-show="index === currentPosition " :src="anime.source" alt=""
-                    class="w-auto h-full rounded-l-xl -z-5" style="opacity: 1;">
+                <transition-group tag="div" :name="upDown == 'up'? `fade`:`mad`"
+                    style="height: 520px; width: 960px; position: relative; overflow: hidden;">
+                    <img v-for="(anime, index) in animes" :key="index" v-show="index === currentPosition"
+                        :src="anime.source" alt="" class="w-auto h-full rounded-l-xl fade-in-out image-big">
+                </transition-group>
+
+
                 <div id="text"
                     class="absolute bottom-10 text-center  bg-neutral-900 bg-opacity-80 p-5 text-stone-100 w-5/6">
+
+
                     <h2 class=" text-3xl z-20"> {{animes[currentPosition].title}}</h2>
                     <p class="mt-5 text-md z-20">
                         {{animes[currentPosition].plot}}
@@ -34,7 +41,7 @@
                 <i class="fa-solid fa-circle-up absolute text-white opacity-90 text-2xl left-1/2 -translate-x-1/2  bg-black z-50"
                     id="up" @click="up"></i>
                 <img v-for="(anime, index) in currentAnimes" :src="anime.source" alt="" class="h-1/3"
-                    @click="changeImage(index)" :class="{'opacity-100 border-2 border-white': index === 1,
+                    @click="changeImage(anime)" :class="{'opacity-100 border-2 border-white': index === 1,
                     'opacity-35': index !== 1,
                     'rounded-tr-xl': index === 0,
                     'rounded-br-xl': index === 2
@@ -46,7 +53,6 @@
 
         </div>
     </div>
-
 
 
 

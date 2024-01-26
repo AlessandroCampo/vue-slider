@@ -10,28 +10,41 @@ createApp({
             pausePlay: "play",
             animes: allAnimes,
             currentAnimes: [allAnimes[currentPosition - 1], allAnimes[currentPosition], allAnimes[currentPosition + 1]],
-            upDown: "up"
+            upDown: "up",
+            ciao: true
         }
     },
+
     mounted() {
         this.autoSlide = setInterval(() => {
             this.upDown == "up" ? this.up() : this.down()
-        }, 3000)
+        }, 4000)
     },
     methods: {
         up() {
+            this.upDown = "up"
             this.currentPosition < allAnimes.length - 1 ? this.currentPosition++ : this.currentPosition = 0
             this.updateThumb();
+            clearInterval(this.autoSlide)
+            this.autoSlide = setInterval(this.up, 4000)
         },
         down() {
+            this.upDown = "down"
+            let images = document.querySelectorAll(".fade-enter-from")
+            images.forEach((image) => {
+                image.style.transform = "translateY(-80%)"
+            })
             this.currentPosition <= 0 ? this.currentPosition = allAnimes.length - 1 : this.currentPosition--
             // this.currentPosition--
             this.updateThumb()
+            clearInterval(this.autoSlide)
+            this.autoSlide = setInterval(this.down, 4000)
         },
-        changeImage(index) {
-            console.log(index)
-            this.currentPosition = index
+        changeImage(element) {
+            this.currentPosition = this.animes.indexOf(element)
             this.updateThumb()
+            clearInterval(this.autoSlide)
+            this.autoSlide = setInterval(this.up, 4000)
 
         },
         updateThumb() {

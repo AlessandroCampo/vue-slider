@@ -13,3 +13,38 @@ i {
 .thumbnail:hover {
     opacity: 1 !important
 }
+
+.fade-leave-active,
+.mad-leave-active {
+    transition: opacity 3s ease;
+}
+
+.fade-enter-active,
+.mad-enter-active {
+    transition: transform 2s ease, opacity 2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to,
+.mad-enter-from,
+.mad-leave-to {
+    opacity: 0;
+}
+
+
+.fade-enter-from {
+    transform: translateY(80%);
+}
+
+.mad-enter-from {
+    transform: translateY(-80%);
+}
+
+.image-big {
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
