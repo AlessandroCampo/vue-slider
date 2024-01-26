@@ -55,4 +55,4 @@ const hxh = new Anime({
 })
 
 
-const allAnimes = [deathNote, aot, fullMetalAlchemist, sevenDeadlySins, overlord, blue_lock, dbz, hxh]
+const allAnimes = [deathNote, fullMetalAlchemist, aot, sevenDeadlySins, overlord, blue_lock, dbz, hxh]
