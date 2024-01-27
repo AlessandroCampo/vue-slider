@@ -17,7 +17,7 @@ createApp({
     created() {
         this.autoSlide = setInterval(() => {
             this.upDown == "up" ? this.up() : this.down()
-        }, 4000)
+        }, 1000)
     },
     methods: {
         up() {
@@ -73,6 +73,27 @@ createApp({
         },
         reverse() {
             this.upDown == "up" ? this.upDown = "down" : this.upDown = "up"
-        }
+        },
+        onEnter(el, done) {
+            el.style.opacity = 0
+            gsap.to(el, {
+                opacity: 1,
+                duration: 3,
+                onComplete: done
+            })
+        },
+        onLeave(el, done) {
+            gsap.to(el, {
+                opacity: 0,
+                duration: 4,
+                scale: 0,
+                rotation: 360,
+                onComplete: function () {
+                    gsap.set(el, { scale: 1, rotation: 0 }); // Reset scale
+                    done();
+                }
+            })
+        },
+
     }
 }).mount('#app')

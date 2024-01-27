@@ -16,8 +16,9 @@
     <div id="app">
         <div id="slider-conatiner" style="height: 100vh;" class="flex justify-center items-center">
             <figure class="relative flex justify-center items-center " style="height: 520px;">
-                <transition-group tag="div" :name="upDown == 'up'? `fade`:`mad`"
-                    style="height: 520px; width: 960px; position: relative; overflow: hidden;">
+                <transition-group tag="div" :css="false"
+                    style="height: 520px; width: 960px; position: relative; overflow: hidden;" @enter="onEnter"
+                    @leave="onLeave" @before-enter="onBeforeEnter">
                     <img v-for="(anime, index) in animes" :key="index" v-show="index === currentPosition"
                         :src="anime.source" alt="" class="w-auto h-full rounded-l-xl fade-in-out image-big">
                 </transition-group>
@@ -57,6 +58,9 @@
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="animes.js"></script>
